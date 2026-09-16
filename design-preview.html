@@ -1,42 +1,1083 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NobreLOG — Design do produto</title><style>
-:root{--paper:#f4f2ea;--white:#fffefa;--ink:#202821;--muted:#677168;--line:#d9ddd2;--green:#244b3c;--yellow:#eac449;--red:#a43829;--soft:#e7ede4}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px 'Trebuchet MS',sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}button,a,input,select{outline-offset:4px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #a57500}aside{width:218px;position:fixed;inset:0 auto 0 0;background:var(--green);color:#fff;padding:32px 20px;display:flex;flex-direction:column}.brand{font:bold 30px Georgia,serif;letter-spacing:-1px}.brand span{color:var(--yellow)}.subbrand{font-size:10px;letter-spacing:2px;margin:10px 0 40px;color:#bfcfc1}nav{display:grid;gap:7px}nav button{border:0;background:transparent;text-align:left;color:#dce5db;padding:13px 14px;border-radius:5px}nav button.active{background:var(--yellow);color:var(--ink);font-weight:bold}nav button span{display:inline-block;width:27px;font-size:11px;opacity:.65}.aside-foot{margin-top:auto;font-size:12px;line-height:1.8;color:#d1ddcf}.aside-foot strong{display:block;color:#fff}main{margin-left:218px;padding:0 38px 32px;max-width:1600px}.top{height:75px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);font-size:12px;gap:16px}.badge{display:inline-block;padding:6px 10px;border-radius:4px;font-size:11px;font-weight:bold;background:#e8eadf;color:var(--green)}.badge.amber{background:#f7e9be;color:#775109}.badge.red{background:#f7ddd4;color:var(--red)}header{display:flex;align-items:end;justify-content:space-between;margin:33px 0 25px;gap:20px}h1{font:38px Georgia,serif;margin:7px 0 10px;letter-spacing:-1px}h2{font:24px Georgia,serif;margin:0 0 16px}h3{font-size:16px;margin:0 0 12px}p{line-height:1.6;margin:8px 0 16px}.eyebrow{text-transform:uppercase;font-size:10px;letter-spacing:2px;color:var(--green);font-weight:bold}.muted{color:var(--muted)}.btn{padding:11px 16px;background:var(--green);border:1px solid var(--green);color:white;border-radius:4px;font-weight:bold}.btn.primary{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}.btn.secondary{background:transparent;border-color:var(--line);color:var(--green)}.btn.small{padding:6px 10px;font-size:12px}.toolbar{display:flex;gap:14px;align-items:end;flex-wrap:wrap;background:var(--white);padding:20px;border:1px solid var(--line);border-radius:6px;margin-bottom:22px}.field{display:grid;gap:7px;flex:1;min-width:160px}label{font-size:12px;font-weight:bold}input,select{border:1px solid #b8c2b6;background:var(--white);color:var(--ink);padding:10px;border-radius:4px;width:100%}.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px}.grid>div,.split>div{min-width:0}.panel{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:22px;margin-bottom:20px;min-width:0}.panel-title{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;margin-bottom:18px}.panel-title h2{margin:0;font-size:22px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}th{text-align:left;font-size:10px;letter-spacing:.7px;color:var(--muted);font-weight:normal;text-transform:uppercase;border-bottom:1px solid var(--line);padding:12px 10px}td{padding:17px 10px;border-bottom:1px solid #eceee7}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}td strong{font-size:12px}tr:last-child td{border-bottom:0}.sum{display:flex;justify-content:space-between;padding:17px 0;border-top:1px solid var(--line);font-size:13px}.big{font:38px Georgia,serif;font-variant-numeric:tabular-nums}.gauge{margin:22px 0 27px}.gauge-head{display:flex;justify-content:space-between;align-items:baseline}.track{height:10px;background:#e8ebdf;margin:12px 0 8px;border-radius:2px;overflow:hidden}.fill{height:100%;background:var(--green);transition:width .25s}.fill.volume{background:#b98a22}.notice{border-left:3px solid var(--yellow);padding:13px 16px;background:#f7eed5;font-size:13px;line-height:1.6;margin:16px 0}.route{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.stop{padding:12px;background:var(--soft);border:1px solid #d3dccd;border-radius:4px;display:flex;align-items:center;gap:12px}.stop b{background:var(--green);color:white;width:23px;height:23px;border-radius:50%;text-align:center;line-height:23px;font-size:11px}.stop small{display:block;color:var(--muted);margin-top:3px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}.stat{padding:20px;border:1px solid var(--line);background:var(--white);border-radius:5px}.stat strong{display:block;font:34px Georgia;margin:10px 0}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{border:1px solid var(--line);background:transparent;padding:9px 13px;border-radius:4px;color:var(--green)}.tabs button.active{background:var(--green);color:white}.screen[hidden]{display:none}.issue{padding:18px 0;border-bottom:1px solid var(--line);display:flex;gap:18px;align-items:start}.issue .text{flex:1}.issue h3{margin-bottom:6px}.issue p{font-size:13px;margin:0}.paper{max-width:850px;background:white;margin:auto;padding:40px;border:1px solid var(--line);color:#222}.paper-top{display:flex;justify-content:space-between;border-bottom:3px solid #222;padding-bottom:18px}.paper h1{font-size:30px}.signature{margin-top:55px;border-top:1px solid #555;padding-top:8px;max-width:350px;font-size:12px}.footnote{font-size:12px;line-height:1.6;color:var(--muted)}.split{display:grid;grid-template-columns:1fr 1fr;gap:22px}.callout{background:var(--green);color:white;padding:25px;border-radius:6px}.callout .muted{color:#d1ddcf}.callout h2{color:#fff}.flash{color:var(--green);font-weight:bold;font-size:13px}details{border-top:1px solid var(--line);padding:14px 0;font-size:13px}summary{cursor:pointer;font-weight:bold}code{font-size:12px}a{color:var(--green)}.wide-button{width:100%;margin-top:10px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-@media(max-width:1100px){main{padding:0 22px 24px}.grid{grid-template-columns:minmax(0,1fr) 260px}.panel{padding:16px}h1{font-size:32px}}
-@media(max-width:850px){aside{position:static;width:auto;padding:20px}.subbrand,.aside-foot{display:none}nav{display:flex;overflow:auto;margin-top:15px}nav button{white-space:nowrap}main{margin-left:0}.grid,.split{grid-template-columns:1fr}header{align-items:start;flex-direction:column}.top{height:auto;min-height:65px;flex-wrap:wrap;padding:14px 0;gap:10px}.stats{grid-template-columns:1fr 1fr}.paper{padding:20px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-@media print{@page{size:A4;margin:14mm}aside,.top,header,.screen:not(#romaneio),.no-print{display:none!important}main{margin:0;padding:0;max-width:none}#romaneio{display:block!important}.paper{border:0;padding:0;max-width:none}body{background:white;font-size:11pt}thead{display:table-header-group}tr{break-inside:avoid}th,td{padding:9px 6px}.signature{break-inside:avoid}}
-</style></head><body>
-<aside><div class="brand">Nobre<span>LOG</span></div><div class="subbrand">CENTRAL DE EXPEDIÇÃO</div><nav aria-label="Navegação principal"><button data-screen="carga" class="active"><span>01</span> Montar carga</button><button data-screen="pedidos"><span>02</span> Pedidos</button><button data-screen="pendencias"><span>03</span> Pendências</button><button data-screen="cadastros"><span>04</span> Cadastros</button><button data-screen="romaneio"><span>05</span> Romaneio</button><button data-screen="historico"><span>06</span> Histórico</button></nav><div class="aside-foot"><strong>Design do MVP · versão 1</strong>Prévia navegável<br>Dados fictícios de demonstração<br>Sem conexão com a operação</div></aside>
-<main><div class="top"><span>NOBRE LAR / LOGÍSTICA</span><span class="badge amber">SIMULAÇÃO · DADOS FICTÍCIOS</span><span>LOTE DEMO-01</span></div>
-<section class="screen" id="carga"><header><div><div class="eyebrow">Planejamento de expedição</div><h1>A carga certa para a próxima saída.</h1><div class="muted">Escolha o eixo e a capacidade disponível. Confira as duas ocupações.</div></div><span class="badge">EXEMPLO INTERATIVO</span></header>
-<div class="toolbar"><div class="field"><label for="axis">Eixo de entrega</label><select id="axis"><option>Ipaporanga · Poranga · Ararendá</option></select></div><div class="field"><label for="vehicle">Veículo de exemplo</label><select id="vehicle"><option value="0">DEMO-01 · Capacidade menor</option><option value="1">DEMO-02 · Capacidade maior</option></select></div><button class="btn primary" id="calculate">Calcular carga</button></div>
-<div class="grid"><div><div class="panel"><div class="panel-title"><h2>Pedidos da viagem</h2><span id="selectionCount" class="badge">Aguardando cálculo</span></div><div class="tabs" aria-label="Filtro de pedidos"><button id="selectedTab" class="active">Selecionados</button><button id="leftTab">Não selecionados</button></div><div class="table-wrap"><table><thead><tr><th>Pedido / cidade</th><th class="num">Valor</th><th class="num">kg</th><th class="num">m³</th><th>Situação</th></tr></thead><tbody id="planRows"></tbody></table></div><p id="solveMessage" class="footnote" aria-live="polite">Clique em Calcular carga para experimentar o fluxo.</p></div>
-<div class="panel"><div class="panel-title"><h2>Ordem de descarga</h2><button id="reverse" class="btn secondary small">Inverter proposta</button></div><div class="route" id="route"></div><p class="footnote">Sequência ilustrativa, a confirmar com a expedição. Não representa o menor trajeto rodoviário.</p></div><div class="notice"><strong>Um pedido está pendente de cubagem.</strong> Ele permanece fora do cálculo até completar a ficha. <button data-screen="pendencias" class="btn secondary small">Ver pendência</button></div></div>
-<div><div class="panel"><div class="eyebrow">Capacidade utilizada</div><div class="gauge"><div class="gauge-head"><strong>Peso</strong><span class="big" id="weightPct">—</span></div><div class="track"><div class="fill" id="weightBar" style="width:0"></div></div><div class="footnote" id="weightAbsolute">—</div></div><div class="gauge"><div class="gauge-head"><strong>Volume</strong><span class="big" id="volumePct">—</span></div><div class="track"><div class="fill volume" id="volumeBar" style="width:0"></div></div><div class="footnote" id="volumeAbsolute">—</div></div><div class="sum"><span>Valor dos pedidos</span><strong id="totalValue">—</strong></div><div class="sum"><span>Pedidos selecionados</span><strong id="totalOrders">—</strong></div><button class="btn primary wide-button" id="preview" disabled>Conferir romaneio →</button></div><p class="footnote">Nesta prévia, seis pedidos fictícios são comparados no próprio navegador. O produto final usará OR-Tools no servidor.</p><details><summary>Como a combinação é escolhida?</summary><p>Maior média de ocupação em peso e volume, sem exceder nenhum limite. Desempate por número de pedidos e valor. É o critério proposto para revisão do time.</p></details></div></div></section>
-<section class="screen" id="pedidos" hidden><header><div><div class="eyebrow">Entrada da operação</div><h1>Pedidos, com dados conferidos.</h1><p class="muted">Cada lote mantém sua origem, seu modo e suas pendências.</p></div><button id="importInfo" class="btn primary">Como será a importação?</button></header><div class="stats"><div class="stat">Pedidos no exemplo<strong>7</strong><span class="footnote">Identificadores fictícios DEMO</span></div><div class="stat">Com cálculo disponível<strong>6</strong><span class="footnote">Peso e volume de exemplo</span></div><div class="stat">Pendência de cadastro<strong>1</strong><span class="footnote">Cubagem não informada</span></div></div><div class="panel"><label for="search">Buscar pedido ou cidade</label><input id="search" placeholder="Ex.: Poranga" style="max-width:400px;margin:10px 0 18px"><div class="table-wrap"><table><thead><tr><th>Pedido</th><th>Cidade</th><th class="num">kg</th><th class="num">m³</th><th>Dados</th></tr></thead><tbody id="allRows"></tbody></table></div></div><div class="notice" id="importNote" hidden>No produto final: importar CSV → conferir colunas e modo → ver resumo → confirmar lote. Repetir o mesmo arquivo não duplicará pedidos. A importação de arquivos ainda não está implementada nesta prévia.</div></section>
-<section class="screen" id="pendencias" hidden><header><div><div class="eyebrow">Qualidade dos dados</div><h1>Resolva a informação que falta.</h1><p class="muted">A correção fica registrada e atualiza os pedidos afetados.</p></div><span class="badge amber">1 PENDÊNCIA FICTÍCIA</span></header><div class="split"><div class="panel"><div class="issue"><span class="badge amber">PRODUTO</span><div class="text"><h3>DEMO-P07 · Revestimento especial</h3><p>Peso e volume por caixa não informados.<br>Afeta o pedido DEMO-107.</p></div></div><p>O pedido continua visível, com a indicação <strong>Não calculado</strong>.</p><details open><summary>Por que isso impede a seleção?</summary><p>Sem conhecer todo o peso e volume do pedido, o sistema não consegue conferir os limites do veículo. O restante dos pedidos válidos pode ser calculado.</p></details></div><div class="panel"><h2>Ficha a completar</h2><div class="field"><label>Peso por caixa (kg)</label><input disabled placeholder="Aguardando ficha técnica"></div><div class="field" style="margin-top:15px"><label>Volume por caixa (m³)</label><input disabled placeholder="Aguardando ficha técnica"></div><p class="footnote">No produto final, o formulário também registra unidade, conversão, fonte, estimativa e motivo da alteração. Campos ilustrativos nesta prévia.</p><button class="btn" disabled>Salvar e reprocessar</button></div></div></section>
-<section class="screen" id="cadastros" hidden><header><div><div class="eyebrow">Configuração da operação</div><h1>A frota muda. O sistema acompanha.</h1><p class="muted">Capacidades, produtos e localidades ficam fora da lógica do cálculo.</p></div></header><div class="tabs" id="settingsTabs"><button class="active" data-settings="fleet">Frota</button><button data-settings="axes">Eixos e cidades</button><button data-settings="products">Produtos</button></div><div id="fleet" class="setting"><div class="split"><div class="panel"><h2>DEMO-01 · Capacidade menor</h2><form id="fleetForm"><div class="field"><label for="kgInput">Capacidade útil em kg</label><input id="kgInput" type="number" min="1" max="100000" step="1" value="1700" required></div><div class="field" style="margin:15px 0"><label for="m3Input">Capacidade útil em m³</label><input id="m3Input" type="number" min="0.001" max="1000" step="0.001" value="2.2" required></div><button class="btn" type="submit">Aplicar ao exemplo</button><p id="fleetSaved" class="flash" aria-live="polite"></p></form><p class="footnote">Alteração apenas em memória. Recarregar a página restaura os valores fictícios. O cálculo anterior é invalidado.</p></div><div class="callout"><div class="eyebrow" style="color:#eac449">Teste o design</div><h2 style="margin-top:16px">Troque a capacidade.<br>Recalcule a carga.</h2><p class="muted">Volte a Montar carga para ver a mudança na combinação de pedidos. O mesmo fluxo servirá para um novo veículo cadastrado.</p><button class="btn primary" data-screen="carga">Ir para o planejamento →</button></div></div></div><div id="axes" class="setting" hidden><div class="panel"><h2>Localidades e sequência sugerida</h2><div id="settingsRoute" class="route"></div><p>Uma cidade pertence ao eixo por cadastro explícito. A sequência é proposta, conferida e salva por plano.</p><button class="btn secondary" id="reverseSettings">Inverter sequência do exemplo</button><p class="footnote">Criação de novos eixos e associação de localidades serão implementadas no produto.</p></div></div><div id="products" class="setting" hidden><div class="panel"><h2>Unidade vendida → unidade carregada</h2><p>Exemplo didático: 23 m² ÷ 2,30 m²/caixa = <strong>10 caixas</strong>.</p><div class="table-wrap"><table><thead><tr><th>Campo</th><th>Exemplo</th></tr></thead><tbody><tr><td>Unidade de venda</td><td>m²</td></tr><tr><td>Unidade de carga</td><td>Caixa</td></tr><tr><td>Área por caixa</td><td>2,30 m²</td></tr><tr><td>Peso por caixa</td><td>28,28 kg</td></tr><tr><td>Fonte e estimativa</td><td>Obrigatórias na ficha do produto</td></tr></tbody></table></div><p class="footnote">Exemplo de estrutura. Este cadastro ainda não alimenta os pedidos fictícios da prévia.</p></div></div></section>
-<section class="screen" id="romaneio" hidden><header><div><div class="eyebrow">Documento de expedição</div><h1>Plano de carga.</h1><p class="muted">Conferência simples na tela e no papel.</p></div><button class="btn primary" id="print" disabled>Imprimir / salvar PDF</button></header><div id="printEmpty" class="notice">Calcule uma carga para visualizar o romaneio de exemplo.</div><div class="paper" id="paper" hidden><div class="paper-top"><div><div class="brand">NobreLOG</div><h1>Plano de carga</h1><div id="printVehicle"></div></div><div style="text-align:right;font-size:12px">DEMO-01<br>SIMULAÇÃO FICTÍCIA<br>Rascunho de design</div></div><p><strong>Eixo:</strong> Ipaporanga · Poranga · Ararendá</p><p class="footnote">Ordem ilustrativa. Documento demonstrativo, sem efeito na operação.</p><div class="table-wrap"><table><thead><tr><th>Parada</th><th>Pedido / cidade</th><th class="num">Valor</th><th class="num">kg</th><th class="num">m³</th></tr></thead><tbody id="printRows"></tbody></table></div><div id="printTotals"></div><p class="footnote">A ordem apresentada não certifica empilhamento ou arranjo tridimensional da carga.</p><div class="signature">Conferência do coordenador · assinatura / data</div></div></section>
-<section class="screen" id="historico" hidden><header><div><div class="eyebrow">Rastreabilidade</div><h1>Cada plano guarda sua versão.</h1><p class="muted">Mudanças na frota não reescrevem documentos já emitidos.</p></div></header><div class="panel"><h2>Nenhum plano emitido nesta prévia.</h2><p>O produto guardará a capacidade, a ficha dos produtos, os pedidos e a sequência usados em cada emissão.</p><div class="table-wrap"><table><thead><tr><th>Estado previsto</th><th>Comportamento</th></tr></thead><tbody><tr><td>Rascunho</td><td>Pode recalcular; alterações invalidam o resultado anterior.</td></tr><tr><td>Emitido</td><td>Guarda uma versão e reserva os pedidos da viagem.</td></tr><tr><td>Cancelado</td><td>Preserva o registro e libera as reservas.</td></tr><tr><td>Concluído</td><td>Entrega confirmada explicitamente pelo responsável.</td></tr></tbody></table></div></div></section>
-<footer class="no-print footnote">NobreLOG · prévia do design · Navegação, cálculo do exemplo, alteração de capacidade e impressão funcionam localmente. Importação, persistência e API serão implementadas no produto.</footer></main>
-<script>
-const orders=[{id:'DEMO-101',city:'Ipaporanga',kg:700,l:400,value:2100},{id:'DEMO-102',city:'Poranga',kg:450,l:1000,value:1800},{id:'DEMO-103',city:'Ararendá',kg:550,l:500,value:2600},{id:'DEMO-104',city:'Ipaporanga',kg:300,l:800,value:1200},{id:'DEMO-105',city:'Poranga',kg:950,l:600,value:3400},{id:'DEMO-106',city:'Ararendá',kg:180,l:700,value:900}];
-const vehicles=[{name:'DEMO-01',kg:1700,l:2200},{name:'DEMO-02',kg:2600,l:3000}];let cities=['Ipaporanga','Poranga','Ararendá'],solution=null,filter='selected';
-const el=id=>document.getElementById(id),num=(x,d=0)=>x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}),money=x=>x.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-function screen(id){document.querySelectorAll('.screen').forEach(s=>s.hidden=s.id!==id);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));if(id==='romaneio')renderPrint();window.scrollTo(0,0)}
-document.querySelectorAll('[data-screen]').forEach(b=>b.addEventListener('click',()=>screen(b.dataset.screen)));
-function renderRoute(){const markup=cities.map((c,i)=>`<div class="stop"><b>${i+1}</b><div>${c}<small>Proposta a conferir</small></div></div>`).join('');el('route').innerHTML=markup;el('settingsRoute').innerHTML=markup}
-function reverse(){cities.reverse();renderRoute();if(solution)renderPrint()}
-el('reverse').onclick=reverse;el('reverseSettings').onclick=reverse;
-function invalidate(){solution=null;renderPlan();renderPrint()}
-function solve(){const v=vehicles[+el('vehicle').value];let best=null;for(let mask=1;mask<(1<<orders.length);mask++){const selected=orders.filter((_,i)=>mask&(1<<i));const w=selected.reduce((a,o)=>a+o.kg,0),l=selected.reduce((a,o)=>a+o.l,0),value=selected.reduce((a,o)=>a+o.value,0);if(w>v.kg||l>v.l)continue;const score=v.l*w+v.kg*l;if(!best||score>best.score||score===best.score&&(selected.length>best.selected.length||selected.length===best.selected.length&&value>best.value))best={selected,w,l,value,score,v:{...v}}}solution=best;renderPlan();renderPrint();if(!best)el('solveMessage').textContent='Nenhum pedido inteiro cabe nas capacidades informadas.'}
-function renderPlan(){const s=solution,v=vehicles[+el('vehicle').value];el('preview').disabled=!s;el('selectionCount').textContent=s?s.selected.length+' pedidos selecionados':'Aguardando cálculo';el('weightPct').textContent=s?num(s.w/v.kg*100,1)+'%':'—';el('volumePct').textContent=s?num(s.l/v.l*100,1)+'%':'—';el('weightBar').style.width=s?s.w/v.kg*100+'%':'0';el('volumeBar').style.width=s?s.l/v.l*100+'%':'0';el('weightAbsolute').textContent=(s?num(s.w):'—')+' / '+num(v.kg)+' kg';el('volumeAbsolute').textContent=(s?num(s.l/1000,3):'—')+' / '+num(v.l/1000,3)+' m³';el('totalValue').textContent=s?money(s.value):'—';el('totalOrders').textContent=s?s.selected.length:'—';const list=s?orders.filter(o=>filter==='selected'?s.selected.includes(o):!s.selected.includes(o)):[];el('planRows').innerHTML=list.map(o=>`<tr><td><strong>${o.id}</strong><br><small class="muted">${o.city}</small></td><td class="num">${money(o.value)}</td><td class="num">${num(o.kg)}</td><td class="num">${num(o.l/1000,3)}</td><td><span class="badge ${filter==='selected'?'':'amber'}">${filter==='selected'?'Selecionado':'Fora da combinação'}</span></td></tr>`).join('')||'<tr><td colspan="5">'+(s?'Nenhum pedido nesta lista.':'Escolha um veículo e calcule a carga.')+'</td></tr>';el('solveMessage').textContent=s?'Melhor combinação do exemplo para o critério proposto, conferida entre todas as 63 combinações não vazias.':'O resultado precisa ser calculado com a capacidade atual.';el('selectedTab').classList.toggle('active',filter==='selected');el('leftTab').classList.toggle('active',filter==='left')}
-el('calculate').onclick=solve;el('vehicle').onchange=invalidate;el('selectedTab').onclick=()=>{filter='selected';renderPlan()};el('leftTab').onclick=()=>{filter='left';renderPlan()};el('preview').onclick=()=>screen('romaneio');
-function renderPrint(){const s=solution;el('paper').hidden=!s;el('printEmpty').hidden=!!s;el('print').disabled=!s;if(!s)return;el('printVehicle').textContent=s.v.name+' · '+num(s.v.kg)+' kg / '+num(s.v.l/1000,3)+' m³';const active=cities.filter(c=>s.selected.some(o=>o.city===c));const list=[...s.selected].sort((a,b)=>cities.indexOf(a.city)-cities.indexOf(b.city)||a.id.localeCompare(b.id));el('printRows').innerHTML=list.map(o=>`<tr><td>${active.indexOf(o.city)+1}ª</td><td><strong>${o.id}</strong><br>${o.city}</td><td class="num">${money(o.value)}</td><td class="num">${num(o.kg)}</td><td class="num">${num(o.l/1000,3)}</td></tr>`).join('');el('printTotals').innerHTML=`<div class="sum"><strong>Total · ${list.length} pedidos</strong><strong>${money(s.value)}</strong></div><div class="sum"><span>Peso: ${num(s.w)} / ${num(s.v.kg)} kg</span><strong>${num(s.w/s.v.kg*100,1)}%</strong></div><div class="sum"><span>Volume: ${num(s.l/1000,3)} / ${num(s.v.l/1000,3)} m³</span><strong>${num(s.l/s.v.l*100,1)}%</strong></div>`}
-el('print').onclick=()=>window.print();
-function allRows(){const q=el('search').value.toLocaleLowerCase('pt-BR');const list=[...orders,{id:'DEMO-107',city:'Poranga',kg:null,l:null}].filter(o=>(o.id+' '+o.city).toLocaleLowerCase('pt-BR').includes(q));el('allRows').innerHTML=list.map(o=>`<tr><td><strong>${o.id}</strong></td><td>${o.city}</td><td class="num">${o.kg===null?'Não calculado':num(o.kg)}</td><td class="num">${o.l===null?'Não calculado':num(o.l/1000,3)}</td><td><span class="badge ${o.kg===null?'amber':''}">${o.kg===null?'Ficha incompleta':'Exemplo calculável'}</span></td></tr>`).join('')||'<tr><td colspan="5">Nenhum pedido encontrado.</td></tr>'}el('search').oninput=allRows;el('importInfo').onclick=()=>el('importNote').hidden=!el('importNote').hidden;
-document.querySelectorAll('[data-settings]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.setting').forEach(s=>s.hidden=s.id!==b.dataset.settings);document.querySelectorAll('[data-settings]').forEach(x=>x.classList.toggle('active',x===b))});
-el('fleetForm').onsubmit=e=>{e.preventDefault();const kg=Number(el('kgInput').value),l=Math.round(Number(el('m3Input').value)*1000);if(!Number.isFinite(kg)||!Number.isFinite(l)||kg<=0||l<=0)return;vehicles[0].kg=kg;vehicles[0].l=l;el('vehicle').value='0';invalidate();el('fleetSaved').textContent='Capacidade aplicada ao exemplo. Recalcule a carga.'};
-renderRoute();allRows();renderPlan();
-</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>NobreLOG — Design do produto</title>
+    <style>
+        :root {
+            --paper: #f4f2ea;
+            --white: #fffefa;
+            --ink: #202821;
+            --muted: #677168;
+            --line: #d9ddd2;
+            --green: #244b3c;
+            --yellow: #eac449;
+            --red: #a43829;
+            --soft: #e7ede4
+        }
 
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font: 15px 'Trebuchet MS', sans-serif
+        }
+
+        button,
+        input,
+        select {
+            font: inherit
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        button:disabled {
+            opacity: .55;
+            cursor: not-allowed
+        }
+
+        button,
+        a,
+        input,
+        select {
+            outline-offset: 4px
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            outline: 3px solid #a57500
+        }
+
+        aside {
+            width: 218px;
+            position: fixed;
+            inset: 0 auto 0 0;
+            background: var(--green);
+            color: #fff;
+            padding: 32px 20px;
+            display: flex;
+            flex-direction: column
+        }
+
+        .brand {
+            font: bold 30px Georgia, serif;
+            letter-spacing: -1px
+        }
+
+        .brand span {
+            color: var(--yellow)
+        }
+
+        .subbrand {
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin: 10px 0 40px;
+            color: #bfcfc1
+        }
+
+        nav {
+            display: grid;
+            gap: 7px
+        }
+
+        nav button {
+            border: 0;
+            background: transparent;
+            text-align: left;
+            color: #dce5db;
+            padding: 13px 14px;
+            border-radius: 5px
+        }
+
+        nav button.active {
+            background: var(--yellow);
+            color: var(--ink);
+            font-weight: bold
+        }
+
+        nav button span {
+            display: inline-block;
+            width: 27px;
+            font-size: 11px;
+            opacity: .65
+        }
+
+        .aside-foot {
+            margin-top: auto;
+            font-size: 12px;
+            line-height: 1.8;
+            color: #d1ddcf
+        }
+
+        .aside-foot strong {
+            display: block;
+            color: #fff
+        }
+
+        main {
+            margin-left: 218px;
+            padding: 0 38px 32px;
+            max-width: 1600px
+        }
+
+        .top {
+            height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--line);
+            font-size: 12px;
+            gap: 16px
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            background: #e8eadf;
+            color: var(--green)
+        }
+
+        .badge.amber {
+            background: #f7e9be;
+            color: #775109
+        }
+
+        .badge.red {
+            background: #f7ddd4;
+            color: var(--red)
+        }
+
+        header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            margin: 33px 0 25px;
+            gap: 20px
+        }
+
+        h1 {
+            font: 38px Georgia, serif;
+            margin: 7px 0 10px;
+            letter-spacing: -1px
+        }
+
+        h2 {
+            font: 24px Georgia, serif;
+            margin: 0 0 16px
+        }
+
+        h3 {
+            font-size: 16px;
+            margin: 0 0 12px
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 8px 0 16px
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--green);
+            font-weight: bold
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .btn {
+            padding: 11px 16px;
+            background: var(--green);
+            border: 1px solid var(--green);
+            color: white;
+            border-radius: 4px;
+            font-weight: bold
+        }
+
+        .btn.primary {
+            background: var(--yellow);
+            border-color: var(--yellow);
+            color: var(--ink)
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border-color: var(--line);
+            color: var(--green)
+        }
+
+        .btn.small {
+            padding: 6px 10px;
+            font-size: 12px
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 14px;
+            align-items: end;
+            flex-wrap: wrap;
+            background: var(--white);
+            padding: 20px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            margin-bottom: 22px
+        }
+
+        .field {
+            display: grid;
+            gap: 7px;
+            flex: 1;
+            min-width: 160px
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: bold
+        }
+
+        input,
+        select {
+            border: 1px solid #b8c2b6;
+            background: var(--white);
+            color: var(--ink);
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 22px
+        }
+
+        .grid>div,
+        .split>div {
+            min-width: 0
+        }
+
+        .panel {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 22px;
+            margin-bottom: 20px;
+            min-width: 0
+        }
+
+        .panel-title {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 18px
+        }
+
+        .panel-title h2 {
+            margin: 0;
+            font-size: 22px
+        }
+
+        .table-wrap {
+            overflow: auto
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            white-space: nowrap
+        }
+
+        th {
+            text-align: left;
+            font-size: 10px;
+            letter-spacing: .7px;
+            color: var(--muted);
+            font-weight: normal;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--line);
+            padding: 12px 10px
+        }
+
+        td {
+            padding: 17px 10px;
+            border-bottom: 1px solid #eceee7
+        }
+
+        td.num,
+        th.num {
+            text-align: right;
+            font-variant-numeric: tabular-nums
+        }
+
+        td strong {
+            font-size: 12px
+        }
+
+        tr:last-child td {
+            border-bottom: 0
+        }
+
+        .sum {
+            display: flex;
+            justify-content: space-between;
+            padding: 17px 0;
+            border-top: 1px solid var(--line);
+            font-size: 13px
+        }
+
+        .big {
+            font: 38px Georgia, serif;
+            font-variant-numeric: tabular-nums
+        }
+
+        .gauge {
+            margin: 22px 0 27px
+        }
+
+        .gauge-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline
+        }
+
+        .track {
+            height: 10px;
+            background: #e8ebdf;
+            margin: 12px 0 8px;
+            border-radius: 2px;
+            overflow: hidden
+        }
+
+        .fill {
+            height: 100%;
+            background: var(--green);
+            transition: width .25s
+        }
+
+        .fill.volume {
+            background: #b98a22
+        }
+
+        .notice {
+            border-left: 3px solid var(--yellow);
+            padding: 13px 16px;
+            background: #f7eed5;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 16px 0
+        }
+
+        .route {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .stop {
+            padding: 12px;
+            background: var(--soft);
+            border: 1px solid #d3dccd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .stop b {
+            background: var(--green);
+            color: white;
+            width: 23px;
+            height: 23px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 23px;
+            font-size: 11px
+        }
+
+        .stop small {
+            display: block;
+            color: var(--muted);
+            margin-top: 3px
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 22px
+        }
+
+        .stat {
+            padding: 20px;
+            border: 1px solid var(--line);
+            background: var(--white);
+            border-radius: 5px
+        }
+
+        .stat strong {
+            display: block;
+            font: 34px Georgia;
+            margin: 10px 0
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px
+        }
+
+        .tabs button {
+            border: 1px solid var(--line);
+            background: transparent;
+            padding: 9px 13px;
+            border-radius: 4px;
+            color: var(--green)
+        }
+
+        .tabs button.active {
+            background: var(--green);
+            color: white
+        }
+
+        .screen[hidden] {
+            display: none
+        }
+
+        .issue {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            gap: 18px;
+            align-items: start
+        }
+
+        .issue .text {
+            flex: 1
+        }
+
+        .issue h3 {
+            margin-bottom: 6px
+        }
+
+        .issue p {
+            font-size: 13px;
+            margin: 0
+        }
+
+        .paper {
+            max-width: 850px;
+            background: white;
+            margin: auto;
+            padding: 40px;
+            border: 1px solid var(--line);
+            color: #222
+        }
+
+        .paper-top {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 3px solid #222;
+            padding-bottom: 18px
+        }
+
+        .paper h1 {
+            font-size: 30px
+        }
+
+        .signature {
+            margin-top: 55px;
+            border-top: 1px solid #555;
+            padding-top: 8px;
+            max-width: 350px;
+            font-size: 12px
+        }
+
+        .footnote {
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--muted)
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px
+        }
+
+        .callout {
+            background: var(--green);
+            color: white;
+            padding: 25px;
+            border-radius: 6px
+        }
+
+        .callout .muted {
+            color: #d1ddcf
+        }
+
+        .callout h2 {
+            color: #fff
+        }
+
+        .flash {
+            color: var(--green);
+            font-weight: bold;
+            font-size: 13px
+        }
+
+        details {
+            border-top: 1px solid var(--line);
+            padding: 14px 0;
+            font-size: 13px
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold
+        }
+
+        code {
+            font-size: 12px
+        }
+
+        a {
+            color: var(--green)
+        }
+
+        .wide-button {
+            width: 100%;
+            margin-top: 10px
+        }
+
+        .sr {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0)
+        }
+
+        @media(max-width:1100px) {
+            main {
+                padding: 0 22px 24px
+            }
+
+            .grid {
+                grid-template-columns: minmax(0, 1fr) 260px
+            }
+
+            .panel {
+                padding: 16px
+            }
+
+            h1 {
+                font-size: 32px
+            }
+        }
+
+        @media(max-width:850px) {
+            aside {
+                position: static;
+                width: auto;
+                padding: 20px
+            }
+
+            .subbrand,
+            .aside-foot {
+                display: none
+            }
+
+            nav {
+                display: flex;
+                overflow: auto;
+                margin-top: 15px
+            }
+
+            nav button {
+                white-space: nowrap
+            }
+
+            main {
+                margin-left: 0
+            }
+
+            .grid,
+            .split {
+                grid-template-columns: 1fr
+            }
+
+            header {
+                align-items: start;
+                flex-direction: column
+            }
+
+            .top {
+                height: auto;
+                min-height: 65px;
+                flex-wrap: wrap;
+                padding: 14px 0;
+                gap: 10px
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .paper {
+                padding: 20px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                transition: none !important
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 14mm
+            }
+
+            aside,
+            .top,
+            header,
+            .screen:not(#romaneio),
+            .no-print {
+                display: none !important
+            }
+
+            main {
+                margin: 0;
+                padding: 0;
+                max-width: none
+            }
+
+            #romaneio {
+                display: block !important
+            }
+
+            .paper {
+                border: 0;
+                padding: 0;
+                max-width: none
+            }
+
+            body {
+                background: white;
+                font-size: 11pt
+            }
+
+            thead {
+                display: table-header-group
+            }
+
+            tr {
+                break-inside: avoid
+            }
+
+            th,
+            td {
+                padding: 9px 6px
+            }
+
+            .signature {
+                break-inside: avoid
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <div class="brand">Nobre<span>LOG</span></div>
+        <div class="subbrand">CENTRAL DE EXPEDIÇÃO</div>
+        <nav aria-label="Navegação principal"><button data-screen="carga" class="active"><span>01</span> Montar
+                carga</button><button data-screen="pedidos"><span>02</span> Pedidos</button><button
+                data-screen="pendencias"><span>03</span> Pendências</button><button
+                data-screen="cadastros"><span>04</span> Cadastros</button><button data-screen="romaneio"><span>05</span>
+                Romaneio</button><button data-screen="historico"><span>06</span> Histórico</button></nav>
+        <div class="aside-foot"><strong>Design do MVP · versão 1</strong>Prévia navegável<br>Dados fictícios de
+            demonstração<br>Sem conexão com a operação</div>
+    </aside>
+    <main>
+        <div class="top"><span>NOBRE / LOGÍSTICA</span><span class="badge amber">SIMULAÇÃO · DADOS
+                FICTÍCIOS</span><span>LOTE DEMO-01</span></div>
+        <section class="screen" id="carga">
+            <header>
+                <div>
+                    <div class="eyebrow">Planejamento de expedição</div>
+                    <h1>A carga certa para a próxima saída.</h1>
+                    <div class="muted">Escolha o eixo e a capacidade disponível. Confira as duas ocupações.</div>
+                </div><span class="badge">EXEMPLO INTERATIVO</span>
+            </header>
+            <div class="toolbar">
+                <div class="field"><label for="axis">Eixo de entrega</label><select id="axis">
+                        <option>Ipaporanga · Poranga · Ararendá</option>
+                    </select></div>
+                <div class="field"><label for="vehicle">Veículo de exemplo</label><select id="vehicle">
+                        <option value="0">DEMO-01 · Capacidade menor</option>
+                        <option value="1">DEMO-02 · Capacidade maior</option>
+                    </select></div><button class="btn primary" id="calculate">Calcular carga</button>
+            </div>
+            <div class="grid">
+                <div>
+                    <div class="panel">
+                        <div class="panel-title">
+                            <h2>Pedidos da viagem</h2><span id="selectionCount" class="badge">Aguardando cálculo</span>
+                        </div>
+                        <div class="tabs" aria-label="Filtro de pedidos"><button id="selectedTab"
+                                class="active">Selecionados</button><button id="leftTab">Não selecionados</button></div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Pedido / cidade</th>
+                                        <th class="num">Valor</th>
+                                        <th class="num">kg</th>
+                                        <th class="num">m³</th>
+                                        <th>Situação</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="planRows"></tbody>
+                            </table>
+                        </div>
+                        <p id="solveMessage" class="footnote" aria-live="polite">Clique em Calcular carga para
+                            experimentar o fluxo.</p>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-title">
+                            <h2>Ordem de descarga</h2><button id="reverse" class="btn secondary small">Inverter
+                                proposta</button>
+                        </div>
+                        <div class="route" id="route"></div>
+                        <p class="footnote">Sequência ilustrativa, a confirmar com a expedição. Não representa o menor
+                            trajeto rodoviário.</p>
+                    </div>
+                    <div class="notice"><strong>Um pedido está pendente de cubagem.</strong> Ele permanece fora do
+                        cálculo até completar a ficha. <button data-screen="pendencias" class="btn secondary small">Ver
+                            pendência</button></div>
+                </div>
+                <div>
+                    <div class="panel">
+                        <div class="eyebrow">Capacidade utilizada</div>
+                        <div class="gauge">
+                            <div class="gauge-head"><strong>Peso</strong><span class="big" id="weightPct">—</span></div>
+                            <div class="track">
+                                <div class="fill" id="weightBar" style="width:0"></div>
+                            </div>
+                            <div class="footnote" id="weightAbsolute">—</div>
+                        </div>
+                        <div class="gauge">
+                            <div class="gauge-head"><strong>Volume</strong><span class="big" id="volumePct">—</span>
+                            </div>
+                            <div class="track">
+                                <div class="fill volume" id="volumeBar" style="width:0"></div>
+                            </div>
+                            <div class="footnote" id="volumeAbsolute">—</div>
+                        </div>
+                        <div class="sum"><span>Valor dos pedidos</span><strong id="totalValue">—</strong></div>
+                        <div class="sum"><span>Pedidos selecionados</span><strong id="totalOrders">—</strong></div>
+                        <button class="btn primary wide-button" id="preview" disabled>Conferir romaneio →</button>
+                    </div>
+                    <p class="footnote">Nesta prévia, seis pedidos fictícios são comparados no próprio navegador. O
+                        produto final usará OR-Tools no servidor.</p>
+                    <details>
+                        <summary>Como a combinação é escolhida?</summary>
+                        <p>Maior média de ocupação em peso e volume, sem exceder nenhum limite. Desempate por número de
+                            pedidos e valor. É o critério proposto para revisão do time.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+        <section class="screen" id="pedidos" hidden>
+            <header>
+                <div>
+                    <div class="eyebrow">Entrada da operação</div>
+                    <h1>Pedidos, com dados conferidos.</h1>
+                    <p class="muted">Cada lote mantém sua origem, seu modo e suas pendências.</p>
+                </div><button id="importInfo" class="btn primary">Como será a importação?</button>
+            </header>
+            <div class="stats">
+                <div class="stat">Pedidos no exemplo<strong>7</strong><span class="footnote">Identificadores fictícios
+                        DEMO</span></div>
+                <div class="stat">Com cálculo disponível<strong>6</strong><span class="footnote">Peso e volume de
+                        exemplo</span></div>
+                <div class="stat">Pendência de cadastro<strong>1</strong><span class="footnote">Cubagem não
+                        informada</span></div>
+            </div>
+            <div class="panel"><label for="search">Buscar pedido ou cidade</label><input id="search"
+                    placeholder="Ex.: Poranga" style="max-width:400px;margin:10px 0 18px">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pedido</th>
+                                <th>Cidade</th>
+                                <th class="num">kg</th>
+                                <th class="num">m³</th>
+                                <th>Dados</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allRows"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="notice" id="importNote" hidden>No produto final: importar CSV → conferir colunas e modo → ver
+                resumo → confirmar lote. Repetir o mesmo arquivo não duplicará pedidos. A importação de arquivos ainda
+                não está implementada nesta prévia.</div>
+        </section>
+        <section class="screen" id="pendencias" hidden>
+            <header>
+                <div>
+                    <div class="eyebrow">Qualidade dos dados</div>
+                    <h1>Resolva a informação que falta.</h1>
+                    <p class="muted">A correção fica registrada e atualiza os pedidos afetados.</p>
+                </div><span class="badge amber">1 PENDÊNCIA FICTÍCIA</span>
+            </header>
+            <div class="split">
+                <div class="panel">
+                    <div class="issue"><span class="badge amber">PRODUTO</span>
+                        <div class="text">
+                            <h3>DEMO-P07 · Revestimento especial</h3>
+                            <p>Peso e volume por caixa não informados.<br>Afeta o pedido DEMO-107.</p>
+                        </div>
+                    </div>
+                    <p>O pedido continua visível, com a indicação <strong>Não calculado</strong>.</p>
+                    <details open>
+                        <summary>Por que isso impede a seleção?</summary>
+                        <p>Sem conhecer todo o peso e volume do pedido, o sistema não consegue conferir os limites do
+                            veículo. O restante dos pedidos válidos pode ser calculado.</p>
+                    </details>
+                </div>
+                <div class="panel">
+                    <h2>Ficha a completar</h2>
+                    <div class="field"><label>Peso por caixa (kg)</label><input disabled
+                            placeholder="Aguardando ficha técnica"></div>
+                    <div class="field" style="margin-top:15px"><label>Volume por caixa (m³)</label><input disabled
+                            placeholder="Aguardando ficha técnica"></div>
+                    <p class="footnote">No produto final, o formulário também registra unidade, conversão, fonte,
+                        estimativa e motivo da alteração. Campos ilustrativos nesta prévia.</p><button class="btn"
+                        disabled>Salvar e reprocessar</button>
+                </div>
+            </div>
+        </section>
+        <section class="screen" id="cadastros" hidden>
+            <header>
+                <div>
+                    <div class="eyebrow">Configuração da operação</div>
+                    <h1>A frota muda. O sistema acompanha.</h1>
+                    <p class="muted">Capacidades, produtos e localidades ficam fora da lógica do cálculo.</p>
+                </div>
+            </header>
+            <div class="tabs" id="settingsTabs"><button class="active" data-settings="fleet">Frota</button><button
+                    data-settings="axes">Eixos e cidades</button><button data-settings="products">Produtos</button>
+            </div>
+            <div id="fleet" class="setting">
+                <div class="split">
+                    <div class="panel">
+                        <h2>DEMO-01 · Capacidade menor</h2>
+                        <form id="fleetForm">
+                            <div class="field"><label for="kgInput">Capacidade útil em kg</label><input id="kgInput"
+                                    type="number" min="1" max="100000" step="1" value="1700" required></div>
+                            <div class="field" style="margin:15px 0"><label for="m3Input">Capacidade útil em
+                                    m³</label><input id="m3Input" type="number" min="0.001" max="1000" step="0.001"
+                                    value="2.2" required></div><button class="btn" type="submit">Aplicar ao
+                                exemplo</button>
+                            <p id="fleetSaved" class="flash" aria-live="polite"></p>
+                        </form>
+                        <p class="footnote">Alteração apenas em memória. Recarregar a página restaura os valores
+                            fictícios. O cálculo anterior é invalidado.</p>
+                    </div>
+                    <div class="callout">
+                        <div class="eyebrow" style="color:#eac449">Teste o design</div>
+                        <h2 style="margin-top:16px">Troque a capacidade.<br>Recalcule a carga.</h2>
+                        <p class="muted">Volte a Montar carga para ver a mudança na combinação de pedidos. O mesmo fluxo
+                            servirá para um novo veículo cadastrado.</p><button class="btn primary"
+                            data-screen="carga">Ir para o planejamento →</button>
+                    </div>
+                </div>
+            </div>
+            <div id="axes" class="setting" hidden>
+                <div class="panel">
+                    <h2>Localidades e sequência sugerida</h2>
+                    <div id="settingsRoute" class="route"></div>
+                    <p>Uma cidade pertence ao eixo por cadastro explícito. A sequência é proposta, conferida e salva por
+                        plano.</p><button class="btn secondary" id="reverseSettings">Inverter sequência do
+                        exemplo</button>
+                    <p class="footnote">Criação de novos eixos e associação de localidades serão implementadas no
+                        produto.</p>
+                </div>
+            </div>
+            <div id="products" class="setting" hidden>
+                <div class="panel">
+                    <h2>Unidade vendida → unidade carregada</h2>
+                    <p>Exemplo didático: 23 m² ÷ 2,30 m²/caixa = <strong>10 caixas</strong>.</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Campo</th>
+                                    <th>Exemplo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Unidade de venda</td>
+                                    <td>m²</td>
+                                </tr>
+                                <tr>
+                                    <td>Unidade de carga</td>
+                                    <td>Caixa</td>
+                                </tr>
+                                <tr>
+                                    <td>Área por caixa</td>
+                                    <td>2,30 m²</td>
+                                </tr>
+                                <tr>
+                                    <td>Peso por caixa</td>
+                                    <td>28,28 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>Fonte e estimativa</td>
+                                    <td>Obrigatórias na ficha do produto</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="footnote">Exemplo de estrutura. Este cadastro ainda não alimenta os pedidos fictícios da
+                        prévia.</p>
+                </div>
+            </div>
+        </section>
+        <section class="screen" id="romaneio" hidden>
+            <header>
+                <div>
+                    <div class="eyebrow">Documento de expedição</div>
+                    <h1>Plano de carga.</h1>
+                    <p class="muted">Conferência simples na tela e no papel.</p>
+                </div><button class="btn primary" id="print" disabled>Imprimir / salvar PDF</button>
+            </header>
+            <div id="printEmpty" class="notice">Calcule uma carga para visualizar o romaneio de exemplo.</div>
+            <div class="paper" id="paper" hidden>
+                <div class="paper-top">
+                    <div>
+                        <div class="brand">NobreLOG</div>
+                        <h1>Plano de carga</h1>
+                        <div id="printVehicle"></div>
+                    </div>
+                    <div style="text-align:right;font-size:12px">DEMO-01<br>SIMULAÇÃO FICTÍCIA<br>Rascunho de design
+                    </div>
+                </div>
+                <p><strong>Eixo:</strong> Ipaporanga · Poranga · Ararendá</p>
+                <p class="footnote">Ordem ilustrativa. Documento demonstrativo, sem efeito na operação.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parada</th>
+                                <th>Pedido / cidade</th>
+                                <th class="num">Valor</th>
+                                <th class="num">kg</th>
+                                <th class="num">m³</th>
+                            </tr>
+                        </thead>
+                        <tbody id="printRows"></tbody>
+                    </table>
+                </div>
+                <div id="printTotals"></div>
+                <p class="footnote">A ordem apresentada não certifica empilhamento ou arranjo tridimensional da carga.
+                </p>
+                <div class="signature">Conferência do coordenador · assinatura / data</div>
+            </div>
+        </section>
+        <section class="screen" id="historico" hidden>
+            <header>
+                <div>
+                    <div class="eyebrow">Rastreabilidade</div>
+                    <h1>Cada plano guarda sua versão.</h1>
+                    <p class="muted">Mudanças na frota não reescrevem documentos já emitidos.</p>
+                </div>
+            </header>
+            <div class="panel">
+                <h2>Nenhum plano emitido nesta prévia.</h2>
+                <p>O produto guardará a capacidade, a ficha dos produtos, os pedidos e a sequência usados em cada
+                    emissão.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Estado previsto</th>
+                                <th>Comportamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Rascunho</td>
+                                <td>Pode recalcular; alterações invalidam o resultado anterior.</td>
+                            </tr>
+                            <tr>
+                                <td>Emitido</td>
+                                <td>Guarda uma versão e reserva os pedidos da viagem.</td>
+                            </tr>
+                            <tr>
+                                <td>Cancelado</td>
+                                <td>Preserva o registro e libera as reservas.</td>
+                            </tr>
+                            <tr>
+                                <td>Concluído</td>
+                                <td>Entrega confirmada explicitamente pelo responsável.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <footer class="no-print footnote">NobreLOG · prévia do design · Navegação, cálculo do exemplo, alteração de
+            capacidade e impressão funcionam localmente. Importação, persistência e API serão implementadas no produto.
+        </footer>
+    </main>
+    <script>
+        const orders = [{ id: 'DEMO-101', city: 'Ipaporanga', kg: 700, l: 400, value: 2100 }, { id: 'DEMO-102', city: 'Poranga', kg: 450, l: 1000, value: 1800 }, { id: 'DEMO-103', city: 'Ararendá', kg: 550, l: 500, value: 2600 }, { id: 'DEMO-104', city: 'Ipaporanga', kg: 300, l: 800, value: 1200 }, { id: 'DEMO-105', city: 'Poranga', kg: 950, l: 600, value: 3400 }, { id: 'DEMO-106', city: 'Ararendá', kg: 180, l: 700, value: 900 }];
+        const vehicles = [{ name: 'DEMO-01', kg: 1700, l: 2200 }, { name: 'DEMO-02', kg: 2600, l: 3000 }]; let cities = ['Ipaporanga', 'Poranga', 'Ararendá'], solution = null, filter = 'selected';
+        const el = id => document.getElementById(id), num = (x, d = 0) => x.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d }), money = x => x.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        function screen(id) { document.querySelectorAll('.screen').forEach(s => s.hidden = s.id !== id); document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b.dataset.screen === id)); if (id === 'romaneio') renderPrint(); window.scrollTo(0, 0) }
+        document.querySelectorAll('[data-screen]').forEach(b => b.addEventListener('click', () => screen(b.dataset.screen)));
+        function renderRoute() { const markup = cities.map((c, i) => `<div class="stop"><b>${i + 1}</b><div>${c}<small>Proposta a conferir</small></div></div>`).join(''); el('route').innerHTML = markup; el('settingsRoute').innerHTML = markup }
+        function reverse() { cities.reverse(); renderRoute(); if (solution) renderPrint() }
+        el('reverse').onclick = reverse; el('reverseSettings').onclick = reverse;
+        function invalidate() { solution = null; renderPlan(); renderPrint() }
+        function solve() { const v = vehicles[+el('vehicle').value]; let best = null; for (let mask = 1; mask < (1 << orders.length); mask++) { const selected = orders.filter((_, i) => mask & (1 << i)); const w = selected.reduce((a, o) => a + o.kg, 0), l = selected.reduce((a, o) => a + o.l, 0), value = selected.reduce((a, o) => a + o.value, 0); if (w > v.kg || l > v.l) continue; const score = v.l * w + v.kg * l; if (!best || score > best.score || score === best.score && (selected.length > best.selected.length || selected.length === best.selected.length && value > best.value)) best = { selected, w, l, value, score, v: { ...v } } } solution = best; renderPlan(); renderPrint(); if (!best) el('solveMessage').textContent = 'Nenhum pedido inteiro cabe nas capacidades informadas.' }
+        function renderPlan() { const s = solution, v = vehicles[+el('vehicle').value]; el('preview').disabled = !s; el('selectionCount').textContent = s ? s.selected.length + ' pedidos selecionados' : 'Aguardando cálculo'; el('weightPct').textContent = s ? num(s.w / v.kg * 100, 1) + '%' : '—'; el('volumePct').textContent = s ? num(s.l / v.l * 100, 1) + '%' : '—'; el('weightBar').style.width = s ? s.w / v.kg * 100 + '%' : '0'; el('volumeBar').style.width = s ? s.l / v.l * 100 + '%' : '0'; el('weightAbsolute').textContent = (s ? num(s.w) : '—') + ' / ' + num(v.kg) + ' kg'; el('volumeAbsolute').textContent = (s ? num(s.l / 1000, 3) : '—') + ' / ' + num(v.l / 1000, 3) + ' m³'; el('totalValue').textContent = s ? money(s.value) : '—'; el('totalOrders').textContent = s ? s.selected.length : '—'; const list = s ? orders.filter(o => filter === 'selected' ? s.selected.includes(o) : !s.selected.includes(o)) : []; el('planRows').innerHTML = list.map(o => `<tr><td><strong>${o.id}</strong><br><small class="muted">${o.city}</small></td><td class="num">${money(o.value)}</td><td class="num">${num(o.kg)}</td><td class="num">${num(o.l / 1000, 3)}</td><td><span class="badge ${filter === 'selected' ? '' : 'amber'}">${filter === 'selected' ? 'Selecionado' : 'Fora da combinação'}</span></td></tr>`).join('') || '<tr><td colspan="5">' + (s ? 'Nenhum pedido nesta lista.' : 'Escolha um veículo e calcule a carga.') + '</td></tr>'; el('solveMessage').textContent = s ? 'Melhor combinação do exemplo para o critério proposto, conferida entre todas as 63 combinações não vazias.' : 'O resultado precisa ser calculado com a capacidade atual.'; el('selectedTab').classList.toggle('active', filter === 'selected'); el('leftTab').classList.toggle('active', filter === 'left') }
+        el('calculate').onclick = solve; el('vehicle').onchange = invalidate; el('selectedTab').onclick = () => { filter = 'selected'; renderPlan() }; el('leftTab').onclick = () => { filter = 'left'; renderPlan() }; el('preview').onclick = () => screen('romaneio');
+        function renderPrint() { const s = solution; el('paper').hidden = !s; el('printEmpty').hidden = !!s; el('print').disabled = !s; if (!s) return; el('printVehicle').textContent = s.v.name + ' · ' + num(s.v.kg) + ' kg / ' + num(s.v.l / 1000, 3) + ' m³'; const active = cities.filter(c => s.selected.some(o => o.city === c)); const list = [...s.selected].sort((a, b) => cities.indexOf(a.city) - cities.indexOf(b.city) || a.id.localeCompare(b.id)); el('printRows').innerHTML = list.map(o => `<tr><td>${active.indexOf(o.city) + 1}ª</td><td><strong>${o.id}</strong><br>${o.city}</td><td class="num">${money(o.value)}</td><td class="num">${num(o.kg)}</td><td class="num">${num(o.l / 1000, 3)}</td></tr>`).join(''); el('printTotals').innerHTML = `<div class="sum"><strong>Total · ${list.length} pedidos</strong><strong>${money(s.value)}</strong></div><div class="sum"><span>Peso: ${num(s.w)} / ${num(s.v.kg)} kg</span><strong>${num(s.w / s.v.kg * 100, 1)}%</strong></div><div class="sum"><span>Volume: ${num(s.l / 1000, 3)} / ${num(s.v.l / 1000, 3)} m³</span><strong>${num(s.l / s.v.l * 100, 1)}%</strong></div>` }
+        el('print').onclick = () => window.print();
+        function allRows() { const q = el('search').value.toLocaleLowerCase('pt-BR'); const list = [...orders, { id: 'DEMO-107', city: 'Poranga', kg: null, l: null }].filter(o => (o.id + ' ' + o.city).toLocaleLowerCase('pt-BR').includes(q)); el('allRows').innerHTML = list.map(o => `<tr><td><strong>${o.id}</strong></td><td>${o.city}</td><td class="num">${o.kg === null ? 'Não calculado' : num(o.kg)}</td><td class="num">${o.l === null ? 'Não calculado' : num(o.l / 1000, 3)}</td><td><span class="badge ${o.kg === null ? 'amber' : ''}">${o.kg === null ? 'Ficha incompleta' : 'Exemplo calculável'}</span></td></tr>`).join('') || '<tr><td colspan="5">Nenhum pedido encontrado.</td></tr>' } el('search').oninput = allRows; el('importInfo').onclick = () => el('importNote').hidden = !el('importNote').hidden;
+        document.querySelectorAll('[data-settings]').forEach(b => b.onclick = () => { document.querySelectorAll('.setting').forEach(s => s.hidden = s.id !== b.dataset.settings); document.querySelectorAll('[data-settings]').forEach(x => x.classList.toggle('active', x === b)) });
+        el('fleetForm').onsubmit = e => { e.preventDefault(); const kg = Number(el('kgInput').value), l = Math.round(Number(el('m3Input').value) * 1000); if (!Number.isFinite(kg) || !Number.isFinite(l) || kg <= 0 || l <= 0) return; vehicles[0].kg = kg; vehicles[0].l = l; el('vehicle').value = '0'; invalidate(); el('fleetSaved').textContent = 'Capacidade aplicada ao exemplo. Recalcule a carga.' };
+        renderRoute(); allRows(); renderPlan();
+    </script>
+</body>
+
+</html>

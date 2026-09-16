@@ -1,6 +1,6 @@
 # NobreLOG — MVP
 
-Montagem automática de carga por eixo para o Grupo Nobre Lar. Ver
+Montagem automática de carga por eixo para o Grupo Nobre. Ver
 [DESIGN-NOBRELOG.md](DESIGN-NOBRELOG.md) e [diagnostico-dados.md](diagnostico-dados.md)
 para o desenho completo e a auditoria dos dados reais — este documento é só
 o "como rodar" e o status real da implementação.

@@ -22,7 +22,7 @@ begin
 
   if target_org is null then
     insert into public.organizations (name, created_by)
-    values ('Grupo Nobre Lar', auth.uid())
+    values ('Grupo Nobre', auth.uid())
     returning id into target_org;
 
     insert into public.memberships (user_id, org_id, role)

@@ -32,7 +32,7 @@ export function Layout({ children }: { children: ReactNode }) {
         </nav>
         <div className="aside-foot">
           <strong>NobreLOG · MVP</strong>
-          Grupo Nobre Lar
+          Grupo Nobre
           <br />
           <button
             className="btn secondary small"

@@ -1,4 +1,4 @@
-"""Parsing de numero brasileiro e do campo Itens_Resumo dos CSVs da Nobre Lar.
+"""Parsing de numero brasileiro e do campo Itens_Resumo dos CSVs da Nobre.
 
 Nada aqui conhece nome de cidade, veiculo ou produto especifico — so regras
 de formato (como o Brasil escreve numero, como aquele CSV concatena itens).
