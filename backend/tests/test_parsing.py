@@ -14,6 +14,12 @@ def test_parse_br_number_empty():
     assert parsing.parse_br_number(None) is None
 
 
+def test_parse_br_number_extra_whitespace():
+    # "espaco sobrando" citado na apresentacao: o numero tem resposta unica
+    # independente de espaco extra em volta ou entre o R$ e o valor.
+    assert parsing.parse_br_number("  R$   2.350,90  ") == 2350.90
+
+
 def test_parse_br_date_valid():
     result = parsing.parse_br_date("01/08/2026")
     assert not result.flagged
@@ -62,6 +68,15 @@ def test_exclusion_crateus():
     )
 
 
+def test_exclusion_crateus_with_accent():
+    # bug real encontrado montando dados de demonstracao: cidade escrita com
+    # acento ("Crateus" com til) nao batia contra o literal sem acento e o
+    # pedido passava direto — comparacao precisa ser accent-insensitive.
+    assert parsing.exclusion_reason(city="Crateús", logistics_status="Entregue", delivery_status="Entregue") == (
+        "entrega_urbana_crateus"
+    )
+
+
 def test_exclusion_retirada_in_either_field():
     assert parsing.exclusion_reason(city="IPAPORANGA", logistics_status="ENTREGUE", delivery_status="RETIRADA") == (
         "retirada_balcao"
@@ -72,6 +87,15 @@ def test_exclusion_cancelado_only_in_logistica_field():
     # o diagnostico aponta que cancelamento aparece em Logistica, nao so em Situacao —
     # filtrar so um campo perde caso.
     assert parsing.exclusion_reason(city="PORANGA", logistics_status="CANCELADO", delivery_status="NORMAL") == (
+        "cancelado"
+    )
+
+
+def test_exclusion_cancelado_only_in_situacao_entrega_field():
+    # simetrico ao teste acima: cancelamento que aparece so no campo de
+    # situacao da entrega (nao em logistica) tambem precisa ser pego —
+    # e' exatamente o caso que motivou ler os dois campos.
+    assert parsing.exclusion_reason(city="PORANGA", logistics_status="Entregue", delivery_status="CANCELADO") == (
         "cancelado"
     )
 

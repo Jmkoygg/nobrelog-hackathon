@@ -138,7 +138,7 @@ def exclusion_reason(*, city: str, logistics_status: str | None, delivery_status
     """Cidade Crateus, retirada e cancelamento ficam fora do recorte do
     desafio. Cancelamento pode aparecer em qualquer um dos dois campos de
     status — filtrar so um deles perde caso, como o diagnostico apontou."""
-    if normalize_city(city) == "CRATEUS":
+    if normalize_city_key(city) == "CRATEUS":
         return "entrega_urbana_crateus"
 
     fields = [f for f in (logistics_status, delivery_status) if f]

@@ -1,0 +1,7 @@
+Pedido;Cidade;Logistica;Situacao_CSV_Entrega;Situacao;Valor_Pedido;Data;Itens_Resumo
+DEMO-C001;Poranga;Em rota;Em rota;Ativo;R$ 2.100,00;12/09/2026;21246 - PISO CERBRAS IPANEMA CINZA (23,00 MT)
+DEMO-C002;Poranga;Em rota;Em rota;Ativo;R$ 2.310,00;12/09/2026;21246 - PISO CERBRAS IPANEMA CINZA (24,00 MT)
+DEMO-C003;Ipaporanga;Em rota;Em rota;Ativo;R$ 890,00;12/09/2026;21503 - CIMENTO POTY (4,00 UN)
+DEMO-C004;Ararendá;Em rota;Em rota;Ativo;R$ 176,00;12/09/2026;12184 - CX DAGUA 500L (2,00 UN)
+DEMO-C005;Poranga;Em rota;Em rota;Ativo;R$ 90,00;12/09/2026;ITEM SEM QUANTIDADE RECONHECIDA NO TEXTO
+DEMO-C006;Ipaporanga;Em rota;Em rota;Ativo;R$ 340,00;12/09/2026;77777 - CODIGO INEXISTENTE (3,00 UN)

@@ -1,0 +1,7 @@
+Pedido;Cidade;Logistica;Situacao_CSV_Entrega;Situacao;Valor_Pedido;Data;Itens_Resumo
+DEMO-D001;Independência;Em rota;Em rota;Ativo;R$ 4.000,00;13/09/2026;21503 - CIMENTO POTY (30,00 UN)
+DEMO-D002;Independência;Em rota;Em rota;Ativo;R$ 1.200,00;13/09/2026;6159 - MASSA CORRIDA (20,00 UN)
+DEMO-D003;Buriti dos Montes;Em rota;Em rota;Ativo;R$ 9.000,00;13/09/2026;21246 - PISO CERBRAS IPANEMA CINZA (100,00 MT)
+DEMO-D004;Ipaporanga;Em rota;Em rota;Ativo;R$ 1.800,00;13/09/2026;8608 - ARGAMASSA (80,00 UN)
+DEMO-D005;Poranga;Em rota;Em rota;Ativo;R$ 3.200,00;13/09/2026;21503 - CIMENTO POTY (40,00 UN)
+DEMO-D006;Ararendá;Em rota;Em rota;Ativo;R$ 600,00;13/09/2026;6159 - MASSA CORRIDA (10,00 UN)
