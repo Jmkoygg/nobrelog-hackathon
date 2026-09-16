@@ -9,6 +9,7 @@ export interface Batch {
 
 export interface Order {
   id: string;
+  batch_id: string;
   external_id: string;
   city: string;
   axis_id: string | null;
@@ -125,15 +126,4 @@ export interface DispatchAssignment {
   rejection_reason: string | null;
   orders?: { external_id: string; city: string };
   vehicles?: { name: string } | null;
-}
-
-export interface SolveResponse {
-  plan: Plan;
-  solver_status: string;
-  validated: boolean;
-  validation_errors: string[];
-  occupancy_kg_pct: number;
-  occupancy_m3_pct: number;
-  selected_count: number;
-  candidate_count: number;
 }

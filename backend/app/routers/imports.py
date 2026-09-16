@@ -16,15 +16,11 @@ router = APIRouter(tags=["importacao"])
 @router.post("/imports")
 async def create_import(
     file: UploadFile = File(...),
-    mode: str = Form(...),
     reference_date: str | None = Form(None),
     client: Client = Depends(user_scoped_client),
     org_id: str = Depends(require_org_id),
     user: AuthedUser = Depends(require_user),
 ):
-    if mode not in ("simulacao_historica", "operacao"):
-        raise HTTPException(422, "mode deve ser 'simulacao_historica' ou 'operacao'.")
-
     ref_date = date.fromisoformat(reference_date) if reference_date else None
     file_bytes = await file.read()
 
@@ -34,9 +30,44 @@ async def create_import(
         user_id=user.user_id,
         file_bytes=file_bytes,
         filename=file.filename or "arquivo.csv",
-        mode=mode,
         reference_date=ref_date,
     )
+
+
+class ManualOrderItem(BaseModel):
+    product_code: str
+    quantity: float
+
+
+class ManualOrderIn(BaseModel):
+    city_id: str
+    value: float
+    items: list[ManualOrderItem]
+    batch_id: str | None = None
+    batch_name: str | None = None
+
+
+@router.post("/orders")
+def create_manual_order(
+    body: ManualOrderIn,
+    client: Client = Depends(user_scoped_client),
+    org_id: str = Depends(require_org_id),
+    user: AuthedUser = Depends(require_user),
+):
+    try:
+        order = import_pipeline.create_manual_order(
+            client,
+            org_id=org_id,
+            user_id=user.user_id,
+            city_id=body.city_id,
+            value=body.value,
+            items=[i.model_dump() for i in body.items],
+            batch_id=body.batch_id,
+            batch_name=body.batch_name,
+        )
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    return order
 
 
 @router.get("/batches")

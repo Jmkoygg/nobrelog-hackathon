@@ -13,7 +13,6 @@ router = APIRouter(prefix="/dispatch", tags=["despacho multi-veiculo"])
 
 class DispatchRequest(BaseModel):
     batch_id: str
-    mode: str = "simulacao_historica"
 
 
 @router.post("/solve")
@@ -24,7 +23,7 @@ def solve(
     user: AuthedUser = Depends(require_user),
 ):
     try:
-        return dispatch_service.build_dispatch(client, org_id=org_id, user_id=user.user_id, batch_id=body.batch_id, mode=body.mode)
+        return dispatch_service.build_dispatch(client, org_id=org_id, user_id=user.user_id, batch_id=body.batch_id)
     except dispatch_service.DispatchError as exc:
         raise HTTPException(422, str(exc)) from exc
 
@@ -55,3 +54,8 @@ def issue(dispatch_run_id: str, client: Client = Depends(user_scoped_client), or
         return dispatch_service.issue_dispatch(client, org_id=org_id, dispatch_run_id=dispatch_run_id)
     except dispatch_service.DispatchError as exc:
         raise HTTPException(409, str(exc)) from exc
+
+
+@router.post("/{dispatch_run_id}/cancel")
+def cancel(dispatch_run_id: str, client: Client = Depends(user_scoped_client), org_id: str = Depends(require_org_id)):
+    return dispatch_service.cancel_dispatch(client, org_id=org_id, dispatch_run_id=dispatch_run_id)

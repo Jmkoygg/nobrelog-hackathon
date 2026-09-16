@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { api, ApiError } from "../lib/api";
 import type { Batch, DispatchAssignment, DispatchRun } from "../types";
 
@@ -10,9 +11,11 @@ const REJECTION_LABEL: Record<string, string> = {
 };
 
 export function DespachoPage() {
+  const [searchParams] = useSearchParams();
+  const viewRunId = searchParams.get("run");
+
   const [batches, setBatches] = useState<Batch[]>([]);
   const [batchId, setBatchId] = useState("");
-  const [mode, setMode] = useState<"simulacao_historica" | "operacao">("simulacao_historica");
   const [solving, setSolving] = useState(false);
   const [run, setRun] = useState<DispatchRun | null>(null);
   const [assignments, setAssignments] = useState<DispatchAssignment[]>([]);
@@ -22,9 +25,25 @@ export function DespachoPage() {
   useEffect(() => {
     api.get<Batch[]>("/batches").then((data) => {
       setBatches(data);
-      if (data.length) setBatchId(data[0].id);
+      if (viewRunId) return;
+      const defaultBatch = data.find((x) => x.filename.endsWith(".csv")) || data[0];
+      if (defaultBatch) setBatchId(defaultBatch.id);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!viewRunId) return;
+    api
+      .get<{ run: DispatchRun; assignments: DispatchAssignment[] }>(`/dispatch/${viewRunId}`)
+      .then((detail) => {
+        setRun(detail.run);
+        setAssignments(detail.assignments);
+        setBatchId(detail.run.batch_id);
+      })
+      .catch((err) => setError(err instanceof ApiError ? err.message : "Erro ao carregar essa rodada de despacho."));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewRunId]);
 
   async function calculate() {
     setSolving(true);
@@ -32,7 +51,7 @@ export function DespachoPage() {
     setRun(null);
     setAssignments([]);
     try {
-      const res = await api.post<{ dispatch_run: DispatchRun }>("/dispatch/solve", { batch_id: batchId, mode });
+      const res = await api.post<{ dispatch_run: DispatchRun }>("/dispatch/solve", { batch_id: batchId });
       const detail = await api.get<{ run: DispatchRun; assignments: DispatchAssignment[] }>(`/dispatch/${res.dispatch_run.id}`);
       setRun(detail.run);
       setAssignments(detail.assignments);
@@ -70,11 +89,12 @@ export function DespachoPage() {
     <div>
       <header className="page-header">
         <div>
-          <div className="eyebrow">Otimização completa · sem eixo fixo</div>
+          <div className="eyebrow">Montagem de carga · otimização completa</div>
           <h1>Qual veículo, pra onde, em que ordem.</h1>
           <p className="muted">
-            Decide junto: quais pedidos entram, em qual caminhão, e a rota real entre as cidades —
-            um veículo pode combinar cidades de eixos diferentes numa mesma viagem.
+            Escolha o lote — o sistema decide sozinho: quais pedidos entram, em qual caminhão, e a
+            rota real entre as cidades. Um veículo pode combinar cidades de eixos diferentes na
+            mesma viagem.
           </p>
         </div>
       </header>
@@ -86,13 +106,6 @@ export function DespachoPage() {
             {batches.map((b) => (
               <option key={b.id} value={b.id}>{b.filename}</option>
             ))}
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="mode">Modo</label>
-          <select id="mode" value={mode} onChange={(e) => setMode(e.target.value as typeof mode)}>
-            <option value="simulacao_historica">Simulação histórica</option>
-            <option value="operacao">Operação</option>
           </select>
         </div>
         <button className="btn primary" onClick={calculate} disabled={!batchId || solving}>
@@ -187,10 +200,12 @@ export function DespachoPage() {
                   {issuing ? "Emitindo…" : "Emitir despacho (reserva os pedidos)"}
                 </button>
               )}
+              {run.status === "issued" && (
+                <Link className="btn primary" to={`/despacho/${run.id}/romaneio`}>Imprimir romaneio →</Link>
+              )}
             </div>
             <p className="footnote">
-              Critério quando falta capacidade para todos: valor comercial do pedido (diferente do
-              critério de ocupação usado no fluxo de um eixo por vez — decisão a validar com o time).
+              Critério quando falta capacidade para todos: valor comercial do pedido.
             </p>
           </div>
         </>

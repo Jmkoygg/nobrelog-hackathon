@@ -42,7 +42,7 @@ export function RomaneioPage() {
           <div style={{ textAlign: "right", fontSize: 12 }}>
             Plano {plan.id.slice(0, 8)}
             <br />
-            {plan.status.toUpperCase()} · {plan.mode === "simulacao_historica" ? "SIMULAÇÃO" : "OPERAÇÃO"}
+            {plan.status.toUpperCase()}
             <br />
             {plan.issued_at ? new Date(plan.issued_at).toLocaleString("pt-BR") : "—"}
           </div>

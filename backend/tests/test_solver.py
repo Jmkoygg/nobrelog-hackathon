@@ -27,6 +27,16 @@ def test_no_order_fits_alone_is_optimal_empty_not_infeasible():
     assert result.validated
 
 
+def test_no_candidate_orders_at_all_is_validated_not_flagged_as_inconsistent():
+    # bug real: lote/eixo sem nenhum pedido candidato retornava validated=False
+    # (nunca chegava a rodar o validador), fazendo a tela mostrar um aviso de
+    # "inconsistencia" que nao existia — zero pedidos e' trivialmente valido.
+    result = solve_axis_vehicle([], capacity_kg=1700.0, capacity_m3=2.18, policy_name="valor_total")
+    assert result.status == "empty_no_orders"
+    assert result.validated
+    assert result.validation_errors == []
+
+
 def test_whole_order_preserved_never_partial():
     # pedido grande demais pra caber junto com outro deve ficar de fora
     # inteiro, nunca "parcialmente" — o modelo so tem variavel por pedido.

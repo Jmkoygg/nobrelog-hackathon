@@ -21,7 +21,7 @@ def _reserved_order_ids(client: Client, org_id: str) -> set[str]:
     return {r["order_id"] for r in rows}
 
 
-def build_dispatch(client: Client, *, org_id: str, user_id: str, batch_id: str, mode: str) -> dict:
+def build_dispatch(client: Client, *, org_id: str, user_id: str, batch_id: str) -> dict:
     all_cities = client.table("cities").select("*").eq("org_id", org_id).execute().data
     cities = [c for c in all_cities if c["lat"] is not None and c["lng"] is not None]
     if not cities:
@@ -41,16 +41,18 @@ def build_dispatch(client: Client, *, org_id: str, user_id: str, batch_id: str, 
     if not vehicles_rows:
         raise DispatchError("Nenhum veículo ativo cadastrado.")
 
-    query = (
+    # so pedido ainda nao entregue entra como candidato — nao faz sentido despachar
+    # algo que ja saiu.
+    orders_rows = (
         client.table("orders")
         .select("id, external_id, city, value, weight_kg, volume_m3, delivered")
         .eq("org_id", org_id)
         .eq("batch_id", batch_id)
         .eq("data_status", "ready")
+        .eq("delivered", False)
+        .execute()
+        .data
     )
-    if mode == "operacao":
-        query = query.eq("delivered", False)
-    orders_rows = query.execute().data
 
     reserved = _reserved_order_ids(client, org_id)
     orders_rows = [o for o in orders_rows if o["id"] not in reserved]
@@ -78,7 +80,7 @@ def build_dispatch(client: Client, *, org_id: str, user_id: str, batch_id: str, 
             {
                 "org_id": org_id,
                 "batch_id": batch_id,
-                "mode": mode,
+                "mode": "operacao",
                 "status": "draft",
                 "solver_status": result.status,
                 "solver_wall_time_ms": result.wall_time_ms,
@@ -155,6 +157,20 @@ def build_dispatch(client: Client, *, org_id: str, user_id: str, batch_id: str, 
         "orders_dropped": len(result.dropped) + len(skipped_no_city),
         "total_distance_km": result.total_distance_km,
     }
+
+
+def cancel_dispatch(client: Client, *, org_id: str, dispatch_run_id: str) -> dict:
+    client.table("reservations").update(
+        {"status": "released", "released_at": datetime.now(timezone.utc).isoformat()}
+    ).eq("dispatch_run_id", dispatch_run_id).eq("status", "active").execute()
+
+    return (
+        client.table("dispatch_runs")
+        .update({"status": "cancelled"})
+        .eq("id", dispatch_run_id)
+        .execute()
+        .data[0]
+    )
 
 
 def issue_dispatch(client: Client, *, org_id: str, dispatch_run_id: str) -> dict:

@@ -4,12 +4,11 @@ import { supabase } from "../lib/supabaseClient";
 
 const NAV = [
   { to: "/dashboard", num: "01", label: "Dashboard" },
-  { to: "/carga", num: "02", label: "Montar carga" },
-  { to: "/despacho", num: "03", label: "Despacho (multi-veículo)" },
-  { to: "/pedidos", num: "04", label: "Pedidos" },
-  { to: "/pendencias", num: "05", label: "Pendências" },
-  { to: "/cadastros", num: "06", label: "Cadastros" },
-  { to: "/historico", num: "07", label: "Histórico" },
+  { to: "/despacho", num: "02", label: "Montar carga" },
+  { to: "/pedidos", num: "03", label: "Pedidos" },
+  { to: "/pendencias", num: "04", label: "Pendências" },
+  { to: "/cadastros", num: "05", label: "Cadastros" },
+  { to: "/historico", num: "06", label: "Histórico" },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {

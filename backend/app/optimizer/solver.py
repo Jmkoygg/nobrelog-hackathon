@@ -82,7 +82,16 @@ def solve_axis_vehicle(
     capacity_m3_cm3 = _floor_scale(capacity_m3, _M3_TO_CM3)
 
     if not orders:
-        return SolveResult(status="empty_no_orders", policy=policy_name)
+        # lista de candidatos vazia (nenhum pedido pronto pra esse
+        # eixo/veiculo/lote) e' trivialmente valida — sem isso o
+        # validador nunca roda e a tela mostra "inconsistencia" que
+        # nao existe.
+        return validate_solution(
+            SolveResult(status="empty_no_orders", policy=policy_name),
+            orders={},
+            capacity_kg=capacity_kg,
+            capacity_m3=capacity_m3,
+        )
 
     eligible: list[OrderInput] = []
     excluded_alone: list[OrderResult] = []

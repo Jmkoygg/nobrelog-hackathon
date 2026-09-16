@@ -4,39 +4,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from supabase import Client
 
-from app.core.auth import AuthedUser, require_user, user_scoped_client
-from app.optimizer.policy import DEFAULT_POLICY
+from app.core.auth import user_scoped_client
 from app.services import romaneio
 from app.services.org import require_org_id
 
 router = APIRouter(prefix="/plans", tags=["planos"])
-
-
-class SolveRequest(BaseModel):
-    axis_id: str
-    vehicle_id: str
-    batch_id: str
-    mode: str
-    policy: str = DEFAULT_POLICY
-
-
-@router.post("/solve")
-def solve(
-    body: SolveRequest,
-    client: Client = Depends(user_scoped_client),
-    org_id: str = Depends(require_org_id),
-    user: AuthedUser = Depends(require_user),
-):
-    return romaneio.build_draft_plan(
-        client,
-        org_id=org_id,
-        user_id=user.user_id,
-        axis_id=body.axis_id,
-        vehicle_id=body.vehicle_id,
-        batch_id=body.batch_id,
-        mode=body.mode,
-        policy_name=body.policy,
-    )
 
 
 @router.get("")
